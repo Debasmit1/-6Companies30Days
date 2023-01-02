@@ -1,3 +1,3 @@
 # -6Companies30Days
 
-Doing 3questions from the Arsh Goyal sheet everyday starting from 01/01/2023
+Doing 3 questions from the Arsh Goyal suggested sheet everyday starting from 01/01/2023

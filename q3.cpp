@@ -6,27 +6,30 @@ class Solution
 public:
     string getHint(string secret, string guess)
     {
-        int n = secret.size();
-        int cntB{}, cntC{};
-        map<int, int> mp1;
-        map<int, int> mp2;
-        for (int i = 0; i < n; i++)
+        unordered_map<int, int> s, g;
+
+        int bull{}, cow{};
+
+        for (int i = 0; i < secret.size(); i++)
         {
             if (secret[i] == guess[i])
-                cntB++;
+            {
+                bull++;
+            }
             else
             {
-                mp1[secret[i] - '0']++;
-                mp2[guess[i] - '0']++;
+                s[secret[i] - '0']++;
+                g[guess[i] - '0']++;
             }
         }
-        for (auto it : mp1)
+
+        for (int i = 0; i <= 9; i++)
         {
-            if (mp2.find(it.first) != mp2.end())
-                cntC += min(mp2[it.first], it.second);
+            cow += min(s[i], g[i]);
         }
-        string s = "";
-        s = to_string(cntB) + "A" + to_string(cntC) + "B";
-        return s;
+
+        string ans = to_string(bull) + 'A' + to_string(cow) + 'B';
+
+        return ans;
     }
 };
