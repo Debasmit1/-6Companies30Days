@@ -1,27 +1,31 @@
 // https://leetcode.com/problems/combination-sum-iii/
+// Microsoft
 
 class Solution
 {
-public:
     vector<vector<int>> ans;
-    void f(int k, int n, int val, int i, vector<int> &ds)
+    void solve(int k, int val, int n, vector<int> &ds)
     {
-        if (i > 10 or k < 0)
+        if (val > 9 || k < 0 || n < 0)
             return;
-        if (k == 0 and val == n)
+
+        if (!k && !n)
         {
             ans.push_back(ds);
             return;
         }
-        ds.push_back(i);
-        f(k - 1, n, val + i, i + 1, ds);
+
+        ds.push_back(val + 1);
+        solve(k - 1, val + 1, n - val - 1, ds);
         ds.pop_back();
-        f(k, n, val, i + 1, ds);
+        solve(k, val + 1, n, ds);
     }
+
+public:
     vector<vector<int>> combinationSum3(int k, int n)
     {
         vector<int> ds;
-        f(k, n, 0, 1, ds);
+        solve(k, 0, n, ds);
         return ans;
     }
 };
